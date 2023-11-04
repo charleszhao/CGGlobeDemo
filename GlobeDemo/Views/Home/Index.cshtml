@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center col-lg-4 col-md-12" style="background-color:red;">
+    <h1 class="display-4">Welcome to JS Demo</h1>
+    X:<input type="text" id="inputX" maxlength="5" /><br />
+    Y:<input type="text" id="inputY" /><br />
+    Result:<input type="text" id="result" /><br />
+    <button onclick="Add()">Add</button>
+</div>
+<div id="ts-example">
+    <br />
+    <button type="button" class="btn btn-primary btn-md" onclick="TSButton()">
+        Click Me
+    </button>
+</div>
+
+<script>
+    function validation() { }
+
+    function Add() {
+        // 1. get x value
+        // 2. chack against rule 1
+        // 3. check against rule 2
+        validation();
+
+        $.ajax({
+            url: '@Url.Action("Add", "Home")',
+            type: 'Get',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: { x: parseInt(inputX.value), y: parseInt(inputY.value) },
+            success: function (response) {
+                result.value = response.result;
+            },
+            error: function (response) {
+                alert(response);
+            }
+        });
+    }
+
+</script>
+
